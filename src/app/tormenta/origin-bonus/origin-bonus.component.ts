@@ -1,8 +1,8 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { SubjectizeProps } from 'subjectize';
 
-import database from '../../../assets/tormenta/database.json';
 
 @Component({
   selector: 'origin-bonus',
@@ -18,10 +18,10 @@ export class OriginBonusComponent implements OnInit {
   @SubjectizeProps(["char_origin"])
   propAB$ = new ReplaySubject(1);
 
-  origins = database["origem"];
+  origins = this.data.catalog.database["origem"];
   origin_items: any;
 
-  constructor() { }
+  constructor(private data: TormentaDataService) { }
 
   ngOnInit(): void {
     this.propAB$.subscribe(() => {

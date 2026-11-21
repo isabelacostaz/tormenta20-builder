@@ -1,9 +1,8 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { SubjectizeProps } from 'subjectize';
 import { ReplaySubject } from 'rxjs';
 
-import pericias from '../../../assets/tormenta/pericias.json';
-import database from '../../../assets/tormenta/database.json';
 
 @Component({
   selector: 'expertise-table',
@@ -27,9 +26,9 @@ export class ExpertiseTableComponent implements OnInit {
 
   used_expertises = 0;
 
-  expertises = pericias["pericias"];
-  classes = database["classe"];
-  origins = database["origem"];
+  expertises = this.data.catalog.pericias["pericias"];
+  classes = this.data.catalog.database["classe"];
+  origins = this.data.catalog.database["origem"];
 
   train = Array.from({length: 30}, (_) => 0);
   others = Array.from({length: 30}, (_) => 0);
@@ -38,7 +37,7 @@ export class ExpertiseTableComponent implements OnInit {
   class_element: any;
   origin_element: any;
 
-  constructor() { }
+  constructor(private data: TormentaDataService) { }
 
   ngOnInit(): void {
     if(screen.width < 1200) {

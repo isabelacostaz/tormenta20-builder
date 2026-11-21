@@ -1,9 +1,6 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, OnInit } from '@angular/core';
 
-import database from '../../../assets/tormenta/database.json';
-import pericias from '../../../assets/tormenta/pericias.json';
-import magic_base from '../../../assets/tormenta/magics.json';
-import char_export from '../../../assets/tormenta/char_export.json';
 
 import { PDFDocument } from 'pdf-lib';
 import * as download from "downloadjs";
@@ -16,17 +13,19 @@ import * as download from "downloadjs";
 })
 export class AppTormentaComponent implements OnInit {
 
+  constructor(private data: TormentaDataService) {}
+
   title = 'tormenta20-builder';
   
-  character = char_export["personagem"];
-  races = database["raça"];
-  classes = database["classe"];
-  origins = database["origem"];
-  powers = database["poder"];
-  gods = database["deus"];
-  magic = magic_base["magias"];
+  character = this.data.catalog.char_export["personagem"];
+  races = this.data.catalog.database["raça"];
+  classes = this.data.catalog.database["classe"];
+  origins = this.data.catalog.database["origem"];
+  powers = this.data.catalog.database["poder"];
+  gods = this.data.catalog.database["deus"];
+  magic = this.data.catalog.magics["magias"];
 
-  expertises = pericias["pericias"];
+  expertises = this.data.catalog.pericias["pericias"];
 
   levels = Array.from({length: 20}, (_, i) => i+1);
 

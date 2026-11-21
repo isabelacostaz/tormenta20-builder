@@ -1,8 +1,8 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { SubjectizeProps } from 'subjectize';
 
-import database from '../../../assets/tormenta/database.json';
 
 @Component({
   selector: 'default-proficiencies',
@@ -15,7 +15,7 @@ export class DefaultProficienciesComponent implements OnInit {
 
   @Output() proficiencies_output = new EventEmitter<number>();
 
-  classes = database["classe"];
+  classes = this.data.catalog.database["classe"];
 
   @SubjectizeProps(["char_class"])
   propAB$ = new ReplaySubject(1);
@@ -24,7 +24,7 @@ export class DefaultProficienciesComponent implements OnInit {
   proficiencies_list: any;
   proficiencies_string = "";
 
-  constructor() { }
+  constructor(private data: TormentaDataService) { }
 
   ngOnInit(): void {
     this.propAB$.subscribe(() => {

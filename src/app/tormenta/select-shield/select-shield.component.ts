@@ -1,7 +1,7 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { SubjectizeProps } from 'subjectize';
-import armors_database from '../../../assets/tormenta/armor.json';
 
 @Component({
   selector: 'select-shield',
@@ -17,11 +17,11 @@ export class SelectShieldComponent implements OnInit {
   @SubjectizeProps(["chosen_shield_import"])
   propAB$ = new ReplaySubject(1);
 
-  shield_list = armors_database["escudos"];
+  shield_list = this.data.catalog.armor["escudos"];
 
   chosen_shield:any[] = [];
 
-  constructor() { }
+  constructor(private data: TormentaDataService) { }
 
   ngOnInit(): void {
     this.chosen_shield = [];

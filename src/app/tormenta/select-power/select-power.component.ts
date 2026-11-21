@@ -1,8 +1,8 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { SubjectizeProps } from 'subjectize';
 
-import database from '../../../assets/tormenta/database.json';
 
 @Component({
   selector: 'select-power',
@@ -21,7 +21,7 @@ export class SelectPowerComponent implements OnInit {
   @SubjectizeProps(["char_level", "char_class", "char_modifiers", "chosen_powers_import"])
   propAB$ = new ReplaySubject(1);
 
-  constructor() { }
+  constructor(private data: TormentaDataService) { }
 
   number_chosen_powers = 0;
   has_chosen_powers = false;
@@ -30,8 +30,8 @@ export class SelectPowerComponent implements OnInit {
   chosen_powers = [""];
   chosen_powers_description = [""];
 
-  classes = database["classe"];
-  powers = database["poder"];
+  classes = this.data.catalog.database["classe"];
+  powers = this.data.catalog.database["poder"];
 
   class_element: any;
   elements_description: any;

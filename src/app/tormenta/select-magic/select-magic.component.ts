@@ -1,9 +1,8 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { SubjectizeProps } from 'subjectize';
 
-import database from '../../../assets/tormenta/database.json';
-import magic_database from '../../../assets/tormenta/magics.json';
 
 @Component({
   selector: 'select-magic',
@@ -23,10 +22,10 @@ export class SelectMagicComponent implements OnInit {
   @SubjectizeProps(["char_class", "char_level", "chosen_magic_import", "chosen_magic_schools_import"])
   propAB$ = new ReplaySubject(1);
 
-  classes = database["classe"];
-  magics = magic_database["magias"];
-  magic_schools_1 = magic_database["escolas"].splice(0, 4);
-  magic_schools_2 = magic_database["escolas"].splice(-4);
+  classes = this.data.catalog.database["classe"];
+  magics = this.data.catalog.magics["magias"];
+  magic_schools_1 = this.data.catalog.magics["escolas"].slice(0, 4);
+  magic_schools_2 = this.data.catalog.magics["escolas"].slice(-4);
   magic_schools = this.magic_schools_1.concat(this.magic_schools_2);
 
   number_chosen_magic_schools = 0;
@@ -43,7 +42,7 @@ export class SelectMagicComponent implements OnInit {
   all_schools_chosen = true;
   has_magic_school = false;
 
-  constructor() { }
+  constructor(private data: TormentaDataService) { }
 
   ngOnInit(): void {
     this.char_level = 1;

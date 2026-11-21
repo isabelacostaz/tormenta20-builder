@@ -1,9 +1,8 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { SubjectizeProps } from 'subjectize';
 import { ReplaySubject } from 'rxjs';
 
-import database from '../../../assets/tormenta/database.json';
-import attributes from '../../../assets/tormenta/attributes.json';
 
 @Component({
   selector: 'base-attributes',
@@ -30,8 +29,8 @@ export class BaseAttributesComponent implements OnInit {
   @Output() attributes_values_output = new EventEmitter<number[]>();
   @Output() extra_output_indexes = new EventEmitter<number[]>();
 
-  classes = database["classe"];
-  races = database["raça"];
+  classes = this.data.catalog.database["classe"];
+  races = this.data.catalog.database["raça"];
 
   life_points = 0;
   mana_points = 0;
@@ -43,13 +42,13 @@ export class BaseAttributesComponent implements OnInit {
   attributes_modifiers = [2, 2, 1, 1, 1, 1];  
   attributes_values = [14, 14, 13, 13, 13, 13];
 
-  attributes_values_cost = attributes["custo"];
-  attributes_modifiers_cost = attributes["modificador"];
+  attributes_values_cost = this.data.catalog.attributes["custo"];
+  attributes_modifiers_cost = this.data.catalog.attributes["modificador"];
 
   class_element: any;
   race_element: any;
 
-  constructor() { }
+  constructor(private data: TormentaDataService) { }
 
   ngOnInit(): void {
 

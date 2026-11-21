@@ -1,3 +1,8 @@
-<app-tormenta></app-tormenta>
+<p *ngIf="loading" role="status">Carregando dados de Tormenta...</p>
+<div *ngIf="error" role="alert">
+  <p>{{ error }}</p>
+  <button type="button" (click)="load()">Tentar novamente</button>
+</div>
+<app-tormenta *ngIf="loaded"></app-tormenta>
 
 <router-outlet></router-outlet>

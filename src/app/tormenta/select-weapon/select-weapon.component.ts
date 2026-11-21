@@ -1,8 +1,8 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { SubjectizeProps } from 'subjectize';
 
-import weapons_database from '../../../assets/tormenta/weapons.json';
 
 @Component({
   selector: 'select-weapon',
@@ -19,12 +19,12 @@ export class SelectWeaponComponent implements OnInit {
   @SubjectizeProps(["char_proeficiencies", "chosen_weapons_import"])
   propAB$ = new ReplaySubject(1);
 
-  weapons_list = weapons_database["armas"];
+  weapons_list = this.data.catalog.weapons["armas"];
 
   weapons:any[] = []; chosen_weapons:any[] = [];
   simple_weapons:any[] = []; martial_weapons:any[] = []; exotic_weapons:any[] = []; fire_weapons:any[] = [];
   
-  constructor() { }
+  constructor(private data: TormentaDataService) { }
 
   ngOnInit(): void {
     this.sort_weapons();

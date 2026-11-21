@@ -1,8 +1,8 @@
+import { TormentaDataService } from '../../tormenta-data.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { SubjectizeProps } from 'subjectize';
 
-import database from '../../../assets/tormenta/database.json';
 
 @Component({
   selector: 'default-powers',
@@ -10,6 +10,8 @@ import database from '../../../assets/tormenta/database.json';
   styleUrls: ['./default-powers.component.scss']
 })
 export class DefaultPowersComponent implements OnInit{
+
+  constructor(private data: TormentaDataService) {}
 
   @Input('level') char_level = 0;
   @Input('race') char_race = 0;
@@ -22,11 +24,11 @@ export class DefaultPowersComponent implements OnInit{
   @SubjectizeProps(["char_level", "char_race", "char_class", "char_god", "char_origin"])
   propAB$ = new ReplaySubject(1);
 
-  races = database["raça"];
-  classes = database["classe"];
-  origins = database["origem"];
-  powers = database["poder"];
-  gods = database["deus"];
+  races = this.data.catalog.database["raça"];
+  classes = this.data.catalog.database["classe"];
+  origins = this.data.catalog.database["origem"];
+  powers = this.data.catalog.database["poder"];
+  gods = this.data.catalog.database["deus"];
 
   given_powers: any;
   race_element: any;

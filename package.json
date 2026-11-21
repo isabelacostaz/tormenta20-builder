@@ -4,9 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
+    "start:dev": "ng serve --host 127.0.0.1 --port 4200 --proxy-config proxy.conf.json",
+    "start:api": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:api": "node server/api.test.js",
     "heroku-postbuild": "ng build --prod"
   },
   "engines": {
