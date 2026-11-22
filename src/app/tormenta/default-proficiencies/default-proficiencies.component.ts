@@ -29,16 +29,16 @@ export class DefaultProficienciesComponent implements OnInit {
   ngOnInit(): void {
     this.propAB$.subscribe(() => {
       setTimeout(() => {
-        this.update_proediciencies();
+        this.update_proficiencies();
       }, 5);
     });
 
     setTimeout(() => {
-      this.update_proediciencies();
+      this.update_proficiencies();
     }, 5);
   }
 
-  update_proediciencies() {
+  update_proficiencies() {
     this.class_element = this.classes.reduce((next: any, element: any) => {
       if (element["nome"] == this.char_class)
         return element;

@@ -11,12 +11,12 @@ import { SubjectizeProps } from 'subjectize';
 })
 export class SelectArmorComponent implements OnInit {
 
-  @Input('proeficiencies') char_proeficiencies: any;
+  @Input('proficiencies') char_proficiencies: any;
   @Input('chosen_armor_import') chosen_armor_import: any;
 
   @Output() chosen_armor_output = new EventEmitter<Object>();
 
-  @SubjectizeProps(["char_proeficiencies", "chosen_armor_import"])
+  @SubjectizeProps(["char_proficiencies", "chosen_armor_import"])
   propAB$ = new ReplaySubject(1);
 
   armor_list = this.data.catalog.armor["armaduras"];
@@ -57,7 +57,7 @@ export class SelectArmorComponent implements OnInit {
   filter_armor() {
     this.protection = this.light_armor;
     
-    if(this.char_proeficiencies && (this.char_proeficiencies.indexOf("Armaduras pesadas") > -1)) this.protection = this.protection.concat(this.heavy_armor);
+    if(this.char_proficiencies && (this.char_proficiencies.indexOf("Armaduras pesadas") > -1)) this.protection = this.protection.concat(this.heavy_armor);
   }
 
   remove_armor(index:any) {

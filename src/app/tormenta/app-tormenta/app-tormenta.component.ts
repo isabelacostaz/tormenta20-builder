@@ -30,7 +30,7 @@ export class AppTormentaComponent implements OnInit {
   levels = Array.from({length: 20}, (_, i) => i+1);
 
   race: any; class: any; origin: any; god: any; level: any; half_level: any;
-  expertises_table: any; extra_attributes: any; proeficiencies: any; origin_bonus: any; default_powers: any; chosen_powers: any; chosen_magic: any; chosen_magic_schools: any; chosen_weapons: any; chosen_armor: any; chosen_shield: any;
+  expertises_table: any; extra_attributes: any; proficiencies: any; origin_bonus: any; default_powers: any; chosen_powers: any; chosen_magic: any; chosen_magic_schools: any; chosen_weapons: any; chosen_armor: any; chosen_shield: any;
   extra_attributes_import: any; modifiers_import: any; chosen_weapons_import: any; chosen_armor_import: any; chosen_shield_import: any; chosen_powers_import: any; chosen_magic_import: any; chosen_magic_schools_import: any; expertises_import: any;
 
   defense_data = [0, 0, 0];
@@ -106,8 +106,8 @@ export class AppTormentaComponent implements OnInit {
     }
 
     let extras_string = "";
-    if(this.proeficiencies) {
-      extras_string += "\nProeficiencias: " + JSON.stringify(this.proeficiencies).split('"').join("").split(',').join(", ").replace("[", "").replace("]", "");
+    if(this.proficiencies) {
+      extras_string += "\nProficiências: " + JSON.stringify(this.proficiencies).split('"').join("").split(',').join(", ").replace("[", "").replace("]", "");
     }
     form.getTextField('Outras Características').setText(extras_string);
 
@@ -175,7 +175,7 @@ export class AppTormentaComponent implements OnInit {
       power_details_text += "PODERES";
       for(let i = 0; i < power_descriptions.length; i++) {
         power_details_text += ("\n\nNome: " + power_descriptions[i].nome);
-        power_details_text += ("\nDescricao: " + power_descriptions[i].descricao);
+        power_details_text += ("\nDescrição: " + power_descriptions[i].descricao);
       }
       power_details_text += "\n\n\n";
     }
@@ -184,7 +184,7 @@ export class AppTormentaComponent implements OnInit {
       magic_details_text += "MAGIAS";
       for(let i = 0; i < this.chosen_magic.length; i++) {
         magic_details_text += ("\n\nNome: " + this.chosen_magic[i].nome);
-        magic_details_text += ("\nDescricao: " + this.chosen_magic[i].informacao.descricao);
+        magic_details_text += ("\nDescrição: " + this.chosen_magic[i].informacao.descricao);
       }
     }
     
@@ -279,11 +279,11 @@ export class AppTormentaComponent implements OnInit {
     return (Math.floor(Math.random() * max)+ 1);
   }
 
-  fisical_attack(weapon: any) {
+  physical_attack(weapon: any) {
     this.set_attack_weapon(weapon);
     this.set_damage_weapon(weapon);
   
-    document.getElementById('fisical-attack-btn')?.click();
+    document.getElementById('physical-attack-btn')?.click();
   }
 
   set_attack_weapon(weapon: any) {
@@ -344,8 +344,8 @@ export class AppTormentaComponent implements OnInit {
     this.expertises_table = outputResult; 
   }
 
-  onProeficiencies(outputResult: any) {
-    this.proeficiencies = outputResult;
+  onProficiencies(outputResult: any) {
+    this.proficiencies = outputResult;
   }
 
   onOriginBonus(outputResult: any) {

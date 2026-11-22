@@ -1,4 +1,4 @@
-<button style="display: none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#attack-modal" id="fisical-attack-btn"></button>
+<button style="display: none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#attack-modal" id="physical-attack-btn"></button>
 
 <div class="modal fade" id="attack-modal" tabindex="-1" role="dialog" aria-labelledby="attack-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -11,7 +11,7 @@
         </div>
         <div class="modal-body">
             <p><span class="bold">Acerto = </span><span class="bold larger">{{attack_total}} </span><span>[{{attack_dice}} (dado) + {{attack_expertise}} (pericia)]</span></p>
-            <p><span class="bold">Dano = </span><span class="bold larger">{{damage_total}} </span> <span>[{{damage_dice}} (dado) + {{damage_bonus}} (bonus) + {{damage_mod}} (mod)]</span></p>
+            <p><span class="bold">Dano = </span><span class="bold larger">{{damage_total}} </span> <span>[{{damage_dice}} (dado) + {{damage_bonus}} (bônus) + {{damage_mod}} (mod)]</span></p>
         </div>
         </div>
     </div>
@@ -111,9 +111,9 @@
                             <tr>
                                 <td class="name-weapon"> Desarmado </td>
                                 <td class="damage-weapon"> Dano: 1d4 </td>
-                                <td class="range-weapon"> Critico: 2x </td>
+                                <td class="range-weapon"> Crítico: 2x </td>
                                 <td class="attack-button">
-                                    <button class="attack btn" (click)="fisical_attack({critico: '2x',dano: '1d4',nome: 'Desarmado',alcance: 'contato'})">Atacar</button>
+                                    <button class="attack btn" (click)="physical_attack({critico: '2x',dano: '1d4',nome: 'Desarmado',alcance: 'contato'})">Atacar</button>
                                 </td>
                             </tr>
                             <tr *ngFor="let weapon of chosen_weapons; let i = index;">
@@ -121,7 +121,7 @@
                                 <td class="damage-weapon"> Dano: {{ weapon.dano }} </td>
                                 <td class="range-weapon"> Alcance: {{ weapon.alcance }} </td>
                                 <td class="attack-button">
-                                    <button class="attack btn" (click)="fisical_attack(weapon)">Atacar</button>
+                                    <button class="attack btn" (click)="physical_attack(weapon)">Atacar</button>
                                 </td>
                             </tr>
                         </table>
@@ -131,31 +131,31 @@
 
             <select-weapon
                 [chosen_weapons_import]="chosen_weapons_import"
-                [proeficiencies]="proeficiencies"
+                [proficiencies]="proficiencies"
                 (chosen_weapons_output)="onChosenWeapons($event)">
             </select-weapon>
 
             <select-armor
                 [chosen_armor_import]="chosen_armor_import"
-                [proeficiencies]="proeficiencies"
+                [proficiencies]="proficiencies"
                 (chosen_armor_output)="onChosenArmor($event)">
             </select-armor>
 
             <select-shield
-                *ngIf="proeficiencies && proeficiencies.includes('Escudos')"
+                *ngIf="proficiencies && proficiencies.includes('Escudos')"
                 [chosen_shield_import]="chosen_shield_import"
                 (chosen_shield_output)="onChosenShield($event)">
             </select-shield>
 
             <default-proficiencies
                 [class]="class"
-                (proficiencies_output)="onProeficiencies($event)">
+                (proficiencies_output)="onProficiencies($event)">
             </default-proficiencies>
 
             <origin-bonus
                 [origin]="origin"
                 (origin_bonus)="onOriginBonus($event)">
-            ></origin-bonus>
+            </origin-bonus>
 
             <default-powers
                 [level]="level"
@@ -167,7 +167,7 @@
             </default-powers>
             
             <select-power
-                [level]="level"chosen_magic_output
+                [level]="level"
                 [class]="class"
                 [chosen_powers_import]="chosen_powers_import"
                 [attributes_modifiers]="attributes_values"

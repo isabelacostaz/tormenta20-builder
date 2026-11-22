@@ -11,12 +11,12 @@ import { SubjectizeProps } from 'subjectize';
 })
 export class SelectWeaponComponent implements OnInit {
 
-  @Input('proeficiencies') char_proeficiencies: any;
+  @Input('proficiencies') char_proficiencies: any;
   @Input('chosen_weapons_import') chosen_weapons_import: any;
 
   @Output() chosen_weapons_output = new EventEmitter<Object>();
 
-  @SubjectizeProps(["char_proeficiencies", "chosen_weapons_import"])
+  @SubjectizeProps(["char_proficiencies", "chosen_weapons_import"])
   propAB$ = new ReplaySubject(1);
 
   weapons_list = this.data.catalog.weapons["armas"];
@@ -64,9 +64,9 @@ export class SelectWeaponComponent implements OnInit {
   filter_weapons() {
     this.weapons = this.simple_weapons;
 
-    if(this.char_proeficiencies && (this.char_proeficiencies.indexOf("Armas de fogo") > -1)) this.weapons = this.weapons.concat(this.fire_weapons);
-    if(this.char_proeficiencies && (this.char_proeficiencies.indexOf("Armas exóticas") > -1)) this.weapons = this.weapons.concat(this.exotic_weapons);
-    if(this.char_proeficiencies && (this.char_proeficiencies.indexOf("Armas marciais") > -1)) this.weapons = this.weapons.concat(this.martial_weapons);
+    if(this.char_proficiencies && (this.char_proficiencies.indexOf("Armas de fogo") > -1)) this.weapons = this.weapons.concat(this.fire_weapons);
+    if(this.char_proficiencies && (this.char_proficiencies.indexOf("Armas exóticas") > -1)) this.weapons = this.weapons.concat(this.exotic_weapons);
+    if(this.char_proficiencies && (this.char_proficiencies.indexOf("Armas marciais") > -1)) this.weapons = this.weapons.concat(this.martial_weapons);
   }
 
   remove_weapon(index:any) {

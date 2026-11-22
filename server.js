@@ -3,7 +3,6 @@ const path = require('path');
 const catalog = require('./server/catalog');
 const app = express();
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
-app.get('/api/tormenta', (req, res) => res.json(catalog));
 app.get('/api/tormenta/:resource', (req, res) => {
   if (!Object.prototype.hasOwnProperty.call(catalog, req.params.resource)) {
     return res.status(404).json({ error: 'Recurso não encontrado.' });
